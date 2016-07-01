@@ -1,0 +1,102 @@
+
+{% load staticfiles %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  
+    <meta charset="utf-8">
+
+
+    
+    <title>Quantum Edge Search</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+	<script type="text/javascript" src="http://static.citygridmedia.com/ads/scripts/v2/loader.js"></script>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="{% static 'css/QE.css' %}">
+  
+    
+  </head>
+
+  <body>
+
+    <div class="topbar">
+      <div class="topbar-inner">
+        <div class="container-fluid">
+          <a class="brand" href="http://joenipko.pythonanywhere.com/">Quantum Edge Search</a>
+          <ul class="nav">
+            <li><a href="http://joenipko.pythonanywhere.com/">Home</a></li>
+            <li><a href="http://joenipko.pythonanywhere.com/blog/">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+    
+      <div class="sidebar">
+        <div class="well">
+        
+			<ul>
+			
+			Check Sidebar
+
+          </ul>     
+          
+        </div>
+      </div>     
+      
+      <div class="content">
+			
+			<div class="row">  
+
+				{% for location in location_results %}
+				<div class="span14">
+
+				  	<div class="row">
+
+						<table cellpadding="5" cellspacing="5" with="500" align="center" class="zebra-striped">
+							<tbody>
+
+								<tr>
+									<td align="left">
+						        		<address>
+						            		<strong> {{ location.name }}</strong>
+						            		<br> {{ location.address.street }} , 
+						            		{{ location.address.city }} , {{location.address.state}} </br>
+						         		</address>							
+									</td>
+									<td align="left" valign="middle" width="7%" style="padding-top: 40px;">
+										<a href="{% url 'QE:QELocationDetail' id=location.id%}" class="btn small primary"> Detail </a> 
+									</td>
+								</tr>	
+							</tbody>
+						</table>
+
+					</div>      
+						
+				</div>
+				{% endfor %}
+
+				<div class="span5">			
+
+					{%					
+					adid = "1"
+					publisher = "citysearch"
+					returnad = citygridadvertising()
+					response = returnad.displaywebad300x250(adid,publisher,what,where)					
+					%}
+					{{ response }}
+					
+				</div>
+			</div>       
+      </div>
+      
+    </div>
+
+  </body>
+</html>

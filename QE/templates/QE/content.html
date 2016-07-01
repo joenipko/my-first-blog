@@ -1,0 +1,35 @@
+{% extends 'QE/QECitytGridSearch.html' %}
+
+{% block content %}
+
+
+{% for location in location_results }
+<div class="span14">
+
+  	<div class="row">
+
+		<table cellpadding="5" cellspacing="5" with="500" align="center" class="zebra-striped">
+			<tbody>
+
+				<tr>
+					<td align="left">
+		        		<address>
+		            		<strong> {{ location[u'name'] }}</strong>
+		            		<br /> {{ location[u'street'] }} 
+		            		<br /> {{ location[u'city'] }} , {{ location[u'state'] }} <br />
+		         		</address>							
+					</td>
+					<td align="left" valign="middle" width="7%" style="padding-top: 40px;">
+						<a href="detail.py?id=whatisthis&what=<%= what %>&where=<%= where %>" class="btn small primary">Detail</a>
+					</td>
+				</tr>	
+			{% # %}
+			<tbody>
+		</table>
+	</div>      
+		
+</div>
+{% endfor %}
+
+
+{% endblock %}

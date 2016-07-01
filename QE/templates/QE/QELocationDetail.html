@@ -1,0 +1,115 @@
+
+{% load staticfiles %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  
+    <meta charset="utf-8">
+
+
+    
+    <title>Quantum Edge Search</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+	<script type="text/javascript" src="http://static.citygridmedia.com/ads/scripts/v2/loader.js"></script>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="{% static 'css/QE.css' %}">
+  
+    
+  </head>
+
+  <body>
+
+    <div class="container-fluid">
+    
+  
+      
+      <div class="content">
+
+      {% for location in location_results %}
+
+				
+  	<address>
+		<strong> {{ location.name }} </strong><br />
+		{{ location.address.street }}<br />
+		{{ location.address.city }}, {{ location.address.state }} {{ location.address.postal_code }} <br />
+		<abbr title="Phone">P:</abbr> {{ location.contact_info.display_phone }}
+	</address>	 
+
+	<p><strong>Atribution:</strong></p>
+	<strong>Attribution Source:</strong> {{ location.customer_content.customer_message.attribution_source }} <br />
+	<strong>Attribution Text:</strong> {{ location.customer_content.customer_message.attribution_text }}  <br />
+	<strong>Attribution Value:</strong> {{ location.customer_content.customer_message.value }}  <br />
+	<strong>Customer URL:</strong> {{ location.customer_content.customer_message_url }} <br /><br />
+
+			<p><strong>Offers:</strong></p>
+
+			{% for offer in location.offers %}
+
+			<ul>	
+				<li>{{ offer }}</li>
+			</ul>
+			{% endfor %}
+
+
+			<p><strong>Categories:</strong></p>
+			{% for c in location.categories %}
+
+			<ul>	
+				<li>{{ c.name }}</li>
+			</ul>
+			{% endfor %}
+
+			<p><strong>Attributes:</strong></p>
+			{% for att in location.attributes %}
+
+			<ul>	
+				<li>{{ att.name }} - {{ att.value }}</li>
+			</ul>
+			{% endfor %}
+
+			<p><strong>Tips:</strong></p>
+			{% for tip in location.tips %}
+
+			<ul>	
+				<li>{{ tip.tip_name }} - {{ tip.tip_text }}</li>
+			</ul>
+			{% endfor %}
+
+			<p><strong>Images:</strong></p>
+			{% for image in location.images %}
+
+			<ul>	
+				<li><a href= "{{ image.image_url }}"><img src="{{ image.image_url }}"/> </a> </li>
+			</ul>
+			{% endfor %}
+
+			<p><strong>Editorials:</strong></p>
+			{% for ed in location.editorials %}
+
+			<ul>	
+				<li> {{ ed.editorial_review }} <a href="{{ ed.editorial_url}}"> FULL EDITORIAL </a></li>
+			</ul>
+			{% endfor %}
+
+			<p><strong>Reviews:</strong></p>
+			{% for rev in location.review_info.reviews %}
+
+			<ul>	
+				<li> {{ rev.review_author }} - {{ rev.review_title }}
+					<p>{{ rev.review_text }} </p> </li>
+			</ul>
+			{% endfor %}
+
+		{% endfor %}						
+      
+      </div>
+      
+    </div>
+
+  </body>
+</html>

@@ -67,7 +67,7 @@ class CityGridPlaces(models.Model):
 			qStr['i'] = self.i
 		qStr['format'] = self.rformat
 		url += urlencode(qStr)
-		response = urlopen(url).read()
+		response = urlopen(url)
 		return response
 
 	def placesdetail(self):
@@ -91,5 +91,5 @@ class CityGridPlaces(models.Model):
 		if len(self.i) > 0:
 			qStr['i'] = self.i
 		url += urlencode(qStr)
-		response = urlopen(url).read()
+		response = urlopen(url)
 		return response
