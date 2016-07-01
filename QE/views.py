@@ -8,7 +8,7 @@ import codecs
 # Create your views here.
 def QECityGridSearch(request):
 
-	json_data=open('/Users/jnipko/QuantumEdge/QE/data/business-categories-datastore.txt')
+	json_data=open('./QE/data/business-categories-datastore.txt')
 	data = json.load(json_data)
 	business = { };
 	for d in data:
